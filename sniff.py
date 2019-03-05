@@ -2,11 +2,14 @@ from scapy.all import *
 
 def printinfo(pkt):
     if IP in pkt:
-        print("Source IP: " + str(pkt[IP].src) + " " + "Destination IP: " + str(pkt[IP].dst) + " ")
+        print("Source IP: " + str(pkt[IP].src) + " " + "Destination IP: " + str(pkt[IP].dst) +
+              " Package in Bytes: " + pkt.sprintf("%IP.len%"))
     if TCP in pkt:
-        print("Source Port: " + str(pkt[TCP].sport) + " " + "Destination Port: " + str(pkt[TCP].dport) + "Protocol: [TCP]")
+        print("Source Port: " + str(pkt[TCP].sport) + " " + "Destination Port: " +
+              str(pkt[TCP].dport) + " Protocol: [TCP]")
     if UDP in pkt:
-        print("Source Port: " + str(pkt[UDP].sport) + " " + "Destination Port: " + str(pkt[UDP].dport) + "Protocol: [UDP]")
+        print("Source Port: " + str(pkt[UDP].sport) + " " + "Destination Port: " +
+              str(pkt[UDP].dport) + " Protocol: [UDP]")
 
 # check if the arguments are filled in
 if len(sys.argv) != 2:
