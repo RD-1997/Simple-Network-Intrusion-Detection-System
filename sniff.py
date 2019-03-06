@@ -4,7 +4,7 @@ import time
 
 # check if the arguments are filled in
 if len(sys.argv) != 3:
-    print("There are missing arguments. Usage: Python3 %s <network interface>"%(sys.argv[0]))
+    print("There are missing arguments. Usage: Python3 %s <network interface> <interval in minutes>"%(sys.argv[0]))
     sys.exit(0)
 
 # defining the command line arguments
