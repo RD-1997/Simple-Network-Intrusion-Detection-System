@@ -4,7 +4,6 @@ import time
 
 # check if the arguments are filled in
 if len(sys.argv) != 3:
-
     print("There are missing arguments. Usage: Python3 %s <network interface>"%(sys.argv[0]))
     sys.exit(0)
 
@@ -13,7 +12,6 @@ interface = str(sys.argv[1])        # user specifies the network interface
 interval = str(sys.argv[2])         # user specifies the interval time
 intervalInt = int(interval) * 60    # converts the minutes given by the user into seconds and creates an integer
 # collector = str(sys.argv[3])
-
 
 # widely used variables
 countTCP = 0                        # variable to count the TCP packets
