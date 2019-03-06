@@ -16,7 +16,6 @@ intervalInt = int(interval) * 60    # converts the minutes given by the user int
 
 
 # widely used variables
-
 countTCP = 0                        # variable to count the TCP packets
 countUDP = 0                        # variable to count the UDP packets
 countByte = 0                       # variable to count the packet size in bytes
