@@ -12,22 +12,21 @@ if len(sys.argv) != 3:
 
 # defining the command line arguments
 
-interface = str(sys.argv[1]) # user specifies the network interface
-interval = str(sys.argv[2])  # user specifies the interval time
-intervalInt = int(interval) * 60  # converts the minutes given by the user into seconds
+interface = str(sys.argv[1])        # user specifies the network interface
+interval = str(sys.argv[2])         # user specifies the interval time
+intervalInt = int(interval) * 60    # converts the minutes given by the user into seconds and creates an integer
 # collector = str(sys.argv[3])
 
 
 # widely used variables
 
-countTCP = 0
-countUDP = 0
-countByte = 0
-packetTime = str(time.time())
+countTCP = 0                        # variable to count the TCP packets
+countUDP = 0                        # variable to count the UDP packets
+countByte = 0                       # variable to count the packet size in bytes
+packetTime = str(time.time())       # variable to determine packet time in UTC format
 
 # function for the scan details
 def printinfo(pkt):
-
     global countTCP, countUDP
 
     if IP in pkt:
@@ -46,17 +45,22 @@ def printinfo(pkt):
 
 # function to activate the scanner
 def sniffThatSh():
+    packetList = []     # creates a list where the scan results can be saved
+    print("[*] Start sniffing...\n")
+    packetList = sniff(iface=interface,filter="ip and tcp or udp",prn=printinfo, timeout=intervalInt)
+    print("[*] Stop sniffing\n")
 
-    print("[*] Start sniffing...")
-    sniff(iface=interface,filter="ip and tcp or udp",prn=printinfo, timeout=intervalInt)
+    global countTCP
+    global countUDP
+    countTCP = 0        # resets the TCP count
+    countUDP = 0        # resets the UDP count
 
-    print("[*] Stop sniffing")
+    print("Sending information to collector....\n")
+    print(packetList)   # shows list details
+    time.sleep(5)       # sleeps for 5 seconds
 
-    print("Sending information to collector....")
-    time.sleep(30)
-
-    sniffThatSh()  #repeats the code
+    sniffThatSh()       # repeats the code
 
 
-sniffThatSh()
+sniffThatSh()           # executing the code
 
