@@ -19,6 +19,10 @@ countUDP = 0                        # variable to count the UDP packets
 countByte = 0                       # variable to count the packet size in bytes
 packetTime = str(time.time())       # variable to determine packet time in UTC format
 
+def start_detector(pkt):
+# Collect data
+    print("hello")
+
 # function for the scan details
 def printinfo(pkt):
     global countTCP, countUDP
