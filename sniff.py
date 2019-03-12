@@ -1,6 +1,7 @@
 from scapy.all import *
 import json
 import time
+from threading import Thread
 
 # check if the arguments are filled in
 if len(sys.argv) != 3:
@@ -17,24 +18,27 @@ intervalInt = int(interval) * 60    # converts the minutes given by the user int
 countTCP = 0                        # variable to count the TCP packets
 countUDP = 0                        # variable to count the UDP packets
 countByte = 0                       # variable to count the packet size in bytes
+tcpPacket = []
+udpPacket = []
 packetTime = str(time.time())       # variable to determine packet time in UTC format
 
 # function for the scan details
 def printinfo(pkt):
-    global countTCP, countUDP
+    global countTCP, countUDP, ipPacket, tcpPacket, udpPacket
 
     if IP in pkt:
-        print(str(pkt[IP].src) + ":" + str(pkt[IP].sport) + " --> " + str(pkt[IP].dst) + ":" + str(pkt[IP].dport) + " | ", end='')
+        ipPacket = str(pkt[IP].src) + ":" + str(pkt[IP].sport) + ":" + str(pkt[IP].dst) + ":" + str(pkt[IP].dport)
 
     if TCP in pkt:
         countTCP +=1
-        print("TCP" + " | " + " UTC Timestamp: " + packetTime + " | TCP Packet number: " + str(countTCP), end='')
-        print("")
+        tcpPacket.append(str(ipPacket + ":TCP | " + " UTC Timestamp: " + packetTime + " | TCP Packet number: " + str(countTCP)))
+        #print(tcpPacket)
 
     if UDP in pkt:
         countUDP +=1
-        print("UDP" + " | "  + " UTC Timestamp: " + packetTime + " | UDP Packet number: " + str(countUDP), end='')
-        print("")
+        udpPacket.append(str(ipPacket + ":UDP | " + " UTC Timestamp: " + packetTime + " | UDP Packet number: " + str(countUDP)))
+        #print(udpPacket)
+
 
 
 # function to activate the scanner
@@ -50,10 +54,16 @@ def sniffThatSh():
     countUDP = 0        # resets the UDP count
 
     print("Sending information to collector....\n")
-    print(packetList)   # shows list details
+    #print(packetList)   # shows list details
+    for f in tcpPacket:
+        print(f)
+
+    for x in udpPacket:
+        print(x)
+
     time.sleep(5)       # sleeps for 5 seconds
 
-    sniffThatSh()       # repeats the code
+    #sniffThatSh()       # repeats the code
 
 
-sniffThatSh()           # executing the code
+Thread(target=sniffThatSh).start()           # executing the code
