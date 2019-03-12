@@ -1,10 +1,13 @@
-import time
-timer = 0.5 * 60
+from pymongo import MongoClient
 
-while timer > 0:
-    time.sleep(0.985)
-    timer -= 1
-    print("I still wont execute...")
+# test code
+client = MongoClient('mongodb://localhost:27017/')
+db = client["package"]
+col = db["packetinfo"]
+data = [{'info': 'sakir', 'info':'sakir1'}]
+col.insert(data)
 
-print("Now I will reset the timer")
-timer = 0.5 * 60
+dblist = client.list_database_names()
+print(client.list_database_names())
+if db in dblist:
+    print("Database already exists.")
