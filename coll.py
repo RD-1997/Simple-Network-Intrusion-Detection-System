@@ -11,16 +11,16 @@ def dbwrite():
         db = client["package"]
         col = db["packetinfo"]
         col.insert = [{
-            'ipSrc': '',amountB
-            'ipDst': '',
-            'sPort': '',
-            'dPort': '',
-            'proto': '',
-            'countTcp': '',
-            'bytesTcp':'',
-            'countUdp': '',
-            'bytesUdp': '',
-            'utcTime': ''
+            'ipSrc': ipSrc,
+            'ipDst': ipDst,
+            'sPort': sPort,
+            'dPort': dPort,
+            'proto': '', #protocol
+            'countTcp': countTCP,
+            'bytesTcp': countByteTCP,
+            'countUdp': counUDP,
+            'bytesUdp': countByteUDP,
+            'utcTime': packetTime
         }]
     except Exception as e:
-    Tcp    print(e)
+        print(e)

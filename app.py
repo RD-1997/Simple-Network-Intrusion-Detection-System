@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from dbconnect import client
+from sniff import tcpPacket, udpPacket
 
 app = Flask(__name__)
 
@@ -8,7 +9,9 @@ package = client.package
 
 @app.route("/")
 def web():
-    return render_template('index.html')
+    udpList = udpPacket
+    tcpList = tcpPacket
+    return render_template('index.html', udpList=udpList, tcpList=tcpList)
 
 if __name__ == '__main__':
     app.run()
