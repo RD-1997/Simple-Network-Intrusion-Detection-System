@@ -18,8 +18,10 @@ intervalInt = int(interval) * 60    # converts the minutes given by the user int
 # widely used variables
 countTCP = 0                        # variable to count the TCP packets
 countUDP = 0                        # variable to count the UDP packets
-countByteTCP = 0                    # variable to count UDP packet sizes in bytes
-countByteUDP = 0                    # variable to count TCP packet sizes in bytes
+bytePerPackageTCP = 0                  # variable to count each package
+bytePerPackageUDP = 0                  # variable to count each package
+totalByteTCP = 0                    # variable to count UDP packet sizes in bytes
+totalByteUDP = 0                    # variable to count TCP packet sizes in bytes
 # tcpPacket = []
 # udpPacket = []
 packetTime = str(time.time())       # variable to determine packet time in UTC format
@@ -27,7 +29,7 @@ taskID = 0                          # variable to determine each task
 
 # function for the scan details
 def printinfo(pkt):
-    global countTCP, countUDP, countByteTCP, countByteUDP
+    global countTCP, countUDP, totalByteTCP, totalByteUDP, bytePerPackageTCP, bytePerPackageUDP
     try:
         db = client["package"]
         col = db["packetinfo"]
@@ -39,7 +41,8 @@ def printinfo(pkt):
         for TCP in pkt:
             countTCP +=1
             protoTCP = "TCP"
-            countByteTCP += int(pkt.sprintf("%IP.len%"))
+            totalByteTCP += int(pkt.sprintf("%IP.len%"))
+            bytePerPackageTCP = int(pkt.sprintf("%IP.len%"))
             data = [{
                 'ipSrc': ipSrc,
                 'ipDst': ipDst,
@@ -47,14 +50,16 @@ def printinfo(pkt):
                 'dPort': dPort,
                 'proto': protoTCP,
                 'countTcp': countTCP,
-                'bytesTcp': countByteTCP,
+                'bytesTcp': totalByteTCP,
+                'bytePerTcp': bytePerPackageTCP,
                 'utcTime': packetTime
             }]
             col.insert(data)
         for UDP in pkt:
             countUDP +=1
             protoUDP = "UDP"
-            countByteUDP += int(pkt.sprintf("%IP.len%"))
+            totalByteUDP = int(pkt.sprintf("%IP.len%"))
+            bytePerPackageUDP = int(pkt.sprintf("%IP.len%"))
             data = [{
                 'ipSrc': ipSrc,
                 'ipDst': ipDst,
@@ -62,7 +67,8 @@ def printinfo(pkt):
                 'dPort': dPort,
                 'proto': protoUDP,
                 'countUdp': countUDP,
-                'bytesUdp': countByteUDP,
+                'bytesUdp': totalByteUDP,
+                'bytePerTcp': bytePerPackageUDP,
                 'utcTime': packetTime
             }]
             col.insert(data)
