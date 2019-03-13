@@ -40,7 +40,7 @@ def printinfo(pkt):
             countTCP +=1
             protoTCP = "TCP"
             countByteTCP += int(pkt.sprintf("%IP.len%"))
-            col.insert = [{
+            data = [{
                 'ipSrc': ipSrc,
                 'ipDst': ipDst,
                 'sPort': sPort,
@@ -50,11 +50,12 @@ def printinfo(pkt):
                 'bytesTcp': countByteTCP,
                 'utcTime': packetTime
             }]
+            col.insert(data)
         for UDP in pkt:
             countUDP +=1
             protoUDP = "UDP"
             countByteUDP += int(pkt.sprintf("%IP.len%"))
-            col.insert = [{
+            data = [{
                 'ipSrc': ipSrc,
                 'ipDst': ipDst,
                 'sPort': sPort,
@@ -64,6 +65,7 @@ def printinfo(pkt):
                 'bytesUdp': countByteUDP,
                 'utcTime': packetTime
             }]
+            col.insert(data)
     except Exception as e:
         print(e)
 
