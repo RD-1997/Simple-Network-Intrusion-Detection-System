@@ -2,6 +2,8 @@ from scapy.all import *
 import json
 import time
 from threading import Thread
+from dbconnect import client
+from coll import manageTraffic
 
 # check if the arguments are filled in
 if len(sys.argv) != 3:
@@ -17,28 +19,54 @@ intervalInt = int(interval) * 60    # converts the minutes given by the user int
 # widely used variables
 countTCP = 0                        # variable to count the TCP packets
 countUDP = 0                        # variable to count the UDP packets
-countByte = 0                       # variable to count the packet size in bytes
-tcpPacket = []
-udpPacket = []
+bytePerPackageTCP = 0                  # variable to count each package
+bytePerPackageUDP = 0                  # variable to count each package
+totalByteTCP = 0                    # variable to count UDP packet sizes in bytes
+totalByteUDP = 0                    # variable to count TCP packet sizes in bytes
+# tcpPacket = []
+# udpPacket = []
 packetTime = str(time.time())       # variable to determine packet time in UTC format
+taskID = 0                          # variable to determine each task
 
 # function for the scan details
 def printinfo(pkt):
-    global countTCP, countUDP, ipPacket, tcpPacket, udpPacket
+    global countTCP, countUDP, totalByteTCP, totalByteUDP, bytePerPackageTCP, bytePerPackageUDP
+    try:
+        db = client["package"]
+        col = db["packetinfo"]
 
-    if IP in pkt:
-        ipPacket = str(pkt[IP].src) + ":" + str(pkt[IP].sport) + ":" + str(pkt[IP].dst) + ":" + str(pkt[IP].dport)
+        if IP in pkt:
+            ipSrc = pkt[IP].src
+            ipDst = pkt[IP].dst
+            sPort = pkt[IP].sport
+            dPort = pkt[IP].dport
 
-    if TCP in pkt:
-        countTCP +=1
-        tcpPacket.append(str(ipPacket + ":TCP | " + " UTC Timestamp: " + packetTime + " | TCP Packet number: " + str(countTCP)))
-        #print(tcpPacket)
+        if TCP in pkt:
+            countTCP +=1
+            totalTraffic = str(countTCP)
+            proto = "TCP"
+            totalByteTCP += int(pkt.sprintf("%IP.len%"))
+            totalBytes = str(totalByteTCP)
+            bytePerPackageTCP = int(pkt.sprintf("%IP.len%"))
+            bytePerPackage = str(bytePerPackageTCP)
 
-    if UDP in pkt:
-        countUDP +=1
-        udpPacket.append(str(ipPacket + ":UDP | " + " UTC Timestamp: " + packetTime + " | UDP Packet number: " + str(countUDP)))
-        #print(udpPacket)
+            detector = manageTraffic("detector1")
+            detector.structureTraffic(ipSrc, ipDst, sPort, dPort, proto, totalTraffic, totalBytes, bytePerPackage, packetTime)
 
+        if UDP in pkt:
+            countUDP +=1
+            totalTraffic = str(countUDP)
+            proto = "UDP"
+            totalByteUDP += int(pkt.sprintf("%IP.len%"))
+            totalBytes = str(totalByteUDP)
+            bytePerPackageUDP = int(pkt.sprintf("%IP.len%"))
+            bytePerPackage = str(bytePerPackageUDP)
+
+            detector = manageTraffic("detector1")
+            detector.structureTraffic(ipSrc, ipDst, sPort, dPort, proto, totalTraffic, totalBytes, bytePerPackage, packetTime)
+
+    except Exception as e:
+        print(e)
 
 
 # function to activate the scanner
@@ -50,16 +78,18 @@ def sniffThatSh():
 
     global countTCP
     global countUDP
+    global taskID
     countTCP = 0        # resets the TCP count
     countUDP = 0        # resets the UDP count
+    taskID += 1         # classify each task by tasknumber.
 
-    print("Sending information to collector....\n")
+    print("Your Task ID is: " + str(taskID) + " Sending information to collector....\n")
     #print(packetList)   # shows list details
-    for f in tcpPacket:
-        print(f)
-
-    for x in udpPacket:
-        print(x)
+    # for f in tcpPacket:
+    #     print(f)
+    #
+    # for x in udpPacket:
+    #     print(x)
 
     time.sleep(5)       # sleeps for 5 seconds
 
