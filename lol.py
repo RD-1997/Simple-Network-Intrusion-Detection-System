@@ -50,6 +50,7 @@ def printinfo(pkt):
             if signature not in signatureList:
                 signatureList.append(signature)
 
+
         if UDP in pkt:
             countUDP += 1
             proto = "UDP"
@@ -60,6 +61,7 @@ def printinfo(pkt):
 
             if signature not in signatureList:
                 signatureList.append(signature)
+
 
     except Exception as e:
         print(e)

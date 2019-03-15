@@ -2,6 +2,7 @@
 import json
 from dbconnect import client
 
+
 class manageTraffic():
     def __init__(self, detector):
         self.detector = detector
@@ -31,6 +32,5 @@ class manageTraffic():
         print(json.dumps(data, indent=2))
         col.insert(data)
 
-       # print(str(data))
 
 
