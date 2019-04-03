@@ -1,26 +1,34 @@
 # The collector
+import json
 from dbconnect import client
-from sniff import start_detector
 
-def collect(dbconnect):
+class manageTraffic():
+    def __init__(self, detector):
+        self.detector = detector
 
+    def structureTraffic(self, signature, totalPackets, totalBytes, startTime, packetTime):
 
-
-def dbwrite():
-    try:
         db = client["package"]
         col = db["packetinfo"]
-        col.insert = [{
-            'ipSrc': ipSrc,
-            'ipDst': ipDst,
-            'sPort': sPort,
-            'dPort': dPort,
-            'proto': '', #protocol
-            'countTcp': countTCP,
-            'bytesTcp': countByteTCP,
-            'countUdp': counUDP,
-            'bytesUdp': countByteUDP,
-            'utcTime': packetTime
+
+        data = [{
+            'general': [
+                {
+                    'detector': self.detector,
+                    'startTime': startTime,
+                    'endTime': packetTime
+                }],
+            'sniffInfo': [
+                {
+                    'traffic': signature,
+                    'totalPackets': totalPackets,
+                    'totalBytes': totalBytes
+                }]
         }]
-    except Exception as e:
-        print(e)
+
+        json.dumps(data)
+
+        print(json.dumps(data, indent=2))
+        col.insert(data)
+
+       # print(str(data))
