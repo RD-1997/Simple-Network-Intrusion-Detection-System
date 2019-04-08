@@ -3,6 +3,7 @@ import time
 from threading import Thread
 from coll import manageTraffic
 
+
 # check if the arguments are filled in
 if len(sys.argv) != 3:
     print("There are missing arguments. Usage: Python3 %s <network interface> <interval in minutes>" % (sys.argv[0]))
