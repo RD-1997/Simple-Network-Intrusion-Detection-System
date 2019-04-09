@@ -2,7 +2,7 @@ import socket, pickle, json, threading
 from dbconnect import client
 
 HOST = 'localhost'
-PORT = 50009
+PORT = 50011
 
 db = client["package"]
 col = db["packetinfo"]
@@ -20,7 +20,8 @@ print("Listening for connection...")
 while True:
     conn, addr = s.accept()
     print('Connected by', addr)
-    data = conn.recv(4096)
+    data = conn.recv(8192)
+    if not data: break
     data_variable = pickle.loads(data)
     conn.close()
    # print(data_variable)
@@ -33,4 +34,6 @@ while True:
     db = client["package"]
     col = db["packetinfo"]
     col.insert(data_variable)
+
+
 

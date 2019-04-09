@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 
-<table>
-    <tr>
-        <th>TCP traffic</th>
-        <th>UDP traffic</th>
-    </tr>
+<img src="/static/images/ipchart.png" alt="myplot">
 
-     {% for packet in tcpList %}
-    <tr>
-        <td>{{packet}}</td>
-    </tr>
-    {% endfor %}
+<body>
+{% for table in tables %}
+        {{titles[loop.index]}}
+        {{ table|safe}}
+{% endfor %}
 
-</table>
+</body>

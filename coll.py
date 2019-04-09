@@ -9,29 +9,23 @@ class manageTraffic():
     def __init__(self, detector):
         self.detector = detector
 
-    def structureTraffic(self, signature, totalPackets, totalBytes, startTime, packetTime):
+    def structureTraffic(self, signature, totalpackets, startTime, packetTime):
 
         #data will be sent to server over socket
         HOST = '127.0.0.1'
-        PORT = 50009
+        PORT = 50011
 
         db = client["package"]
         col = db["packetinfo"]
 
-        data = [{
-            'general': [
-                {
-                    'detector': self.detector,
-                    'startTime': startTime,
-                    'endTime': packetTime
-                }],
-            'sniffInfo': [
-                {
-                    'traffic': signature,
-                    'totalPackets': totalPackets,
-                    'totalBytes': totalBytes
-                }]
-        }]
+        data = {
+
+             "detector": self.detector,
+             "startTime": startTime,
+             "endTime": packetTime,
+             "signature": signature,
+             "totalpackets": totalpackets
+         }
 
         # Create a socket connection.
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
