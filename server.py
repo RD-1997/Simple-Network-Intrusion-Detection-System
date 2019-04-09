@@ -1,11 +1,15 @@
 import socket, pickle, json, threading
 from dbconnect import client
+import yaml
 
-HOST = 'localhost'
-PORT = 50011
+with open("config.yaml", "r") as ymlfile:
+    cfg = yaml.load(ymlfile)
 
-db = client["package"]
-col = db["packetinfo"]
+HOST = cfg['socket']['ip']
+PORT = cfg['socket']['port']
+
+db = client[cfg['mongodb']['db']]
+col = db[cfg['mongodb']['collection']]
 
 print("Creating socket...")
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -31,8 +35,8 @@ while True:
     #print(newjson)
 
     print('Data received from client and inserted in db')
-    db = client["package"]
-    col = db["packetinfo"]
+    db = client[cfg['mongodb']['db']]
+    col = db[cfg['mongodb']['collection']]
     col.insert(data_variable)
 
 

@@ -4,18 +4,10 @@
     <list default="true" id="1c8f41d9-0c9d-48d9-9a6b-567a2f1c4f07" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sniff.py" beforeDir="false" afterPath="$PROJECT_DIR$/sniff.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/bootstrap.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/theme-b.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/theme-c.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/theme-d.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/theme-e.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/theme-f.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/theme-g.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/theme-h.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coll.py" beforeDir="false" afterPath="$PROJECT_DIR$/coll.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbconnect.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbconnect.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/images/ipchart.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/ipchart.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/demo/demo-datatable.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/demo/demo-datatable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard_v3.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard_v3.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,11 +41,11 @@
     <session id="-1272275834">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.0" value="2" />
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.0" value="5" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="2" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -62,7 +54,8 @@
           <entry key="css" value="20" />
           <entry key="html" value="1307" />
           <entry key="js" value="13" />
-          <entry key="py" value="8789" />
+          <entry key="py" value="9078" />
+          <entry key="yaml" value="97" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -70,7 +63,8 @@
           <entry key="CSS" value="20" />
           <entry key="HTML" value="1307" />
           <entry key="JavaScript" value="13" />
-          <entry key="Python" value="8792" />
+          <entry key="Python" value="9081" />
+          <entry key="YAML" value="97" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -82,8 +76,9 @@
           <entry key="json" value="1" />
           <entry key="png" value="2" />
           <entry key="pstat" value="2" />
-          <entry key="py" value="22" />
+          <entry key="py" value="30" />
           <entry key="sh" value="3" />
+          <entry key="yaml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -96,13 +91,36 @@
           <entry key="JavaScript" value="7" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Profiler Session" value="2" />
-          <entry key="Python" value="22" />
+          <entry key="Python" value="30" />
+          <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="386">
+              <caret line="63" column="10" lean-forward="true" selection-start-line="63" selection-start-column="10" selection-end-line="63" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -138,17 +156,19 @@
         <option value="$PROJECT_DIR$/lawl.py" />
         <option value="$PROJECT_DIR$/client.py" />
         <option value="$PROJECT_DIR$/visualization.py" />
-        <option value="$PROJECT_DIR$/coll.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/pytz.py" />
         <option value="$PROJECT_DIR$/timeconverter.py" />
-        <option value="$PROJECT_DIR$/server.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/sniff.py" />
         <option value="$PROJECT_DIR$/static/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/static/js/demo/demo-datatable.js" />
         <option value="$PROJECT_DIR$/templates/dashboard_v3.html" />
+        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/coll.py" />
+        <option value="$PROJECT_DIR$/config.yaml" />
+        <option value="$PROJECT_DIR$/server.py" />
+        <option value="$PROJECT_DIR$/dbconnect.py" />
       </list>
     </option>
   </component>
@@ -164,8 +184,7 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-17" />
-    <option name="y" value="47" />
+    <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="827" />
   </component>
@@ -420,9 +439,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-17" y="47" width="1440" height="827" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="827" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4979757" visible="true" weight="0.20028612" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4979757" visible="true" weight="0.20886981" />
       <window_info id="Structure" order="1" sideWeight="0.5020243" side_tool="true" weight="0.20028612" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -437,7 +457,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.21964529" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49928468" weight="0.21904762" />
-      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49928468" visible="true" weight="0.32789117" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" sideWeight="0.49928468" visible="true" weight="0.32789117" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -445,7 +465,7 @@
       <window_info anchor="right" id="Database" order="4" weight="0.32982844" />
       <window_info anchor="right" id="R Graphics" order="5" />
       <window_info anchor="right" id="R Packages" order="6" />
-      <window_info anchor="right" x="0" y="0" width="310" height="625" id="Documentation" order="7" sideWeight="0.5040486" side_tool="true" weight="0.2811159" />
+      <window_info anchor="right" x="0" y="0" width="310" height="625" id="Documentation" order="7" sideWeight="0.5040486" side_tool="true" visible="true" weight="0.13018598" />
       <window_info anchor="right" id="Coverage" order="8" side_tool="true" />
     </layout>
   </component>
@@ -469,9 +489,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/visualization.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/visualization.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -483,13 +501,7 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pytz.py" />
-    <entry file="file://$PROJECT_DIR$/timeconverter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="6" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/timeconverter.py" />
     <entry file="file://$PROJECT_DIR$/static/css/app.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -527,9 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="17" column="12" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -557,12 +566,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#17#24#1" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-28" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Bootstrap-Thema/app/table-datatable.html">
@@ -576,9 +580,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
           <caret line="62" column="32" lean-forward="true" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -589,26 +590,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/index" />
     <entry file="file://$PROJECT_DIR$/sniff.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -617,27 +603,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dbconnect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coll.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="285">
+          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
           <folding>
-            <element signature="e#16#27#0" expanded="true" />
+            <element signature="e#16#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="33" column="26" lean-forward="true" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+        <state relative-caret-position="570">
+          <caret line="38" column="42" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="63" column="10" lean-forward="true" selection-start-line="63" selection-start-column="10" selection-end-line="63" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>

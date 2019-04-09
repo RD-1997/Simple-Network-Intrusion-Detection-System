@@ -1,0 +1,8 @@
+mongodb:
+  client: 'mongodb://localhost:27017/'
+  db: "package"
+  collection: "packetinfo"
+
+socket:
+  ip: '127.0.0.1'
+  port: 50012

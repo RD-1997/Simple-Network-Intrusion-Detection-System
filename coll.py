@@ -1,8 +1,10 @@
 # The collector
-import json
-from dbconnect import client
 import socket
 import pickle
+import yaml
+
+with open("config.yaml", "r") as ymlfile:
+    cfg = yaml.load(ymlfile)
 
 
 class manageTraffic():
@@ -12,11 +14,8 @@ class manageTraffic():
     def structureTraffic(self, signature, totalpackets, startTime, packetTime):
 
         #data will be sent to server over socket
-        HOST = '127.0.0.1'
-        PORT = 50011
-
-        db = client["package"]
-        col = db["packetinfo"]
+        HOST = cfg['socket']['ip']
+        PORT = cfg['socket']['port']
 
         data = {
 

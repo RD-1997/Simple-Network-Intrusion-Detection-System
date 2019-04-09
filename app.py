@@ -2,12 +2,14 @@ from flask import Flask, render_template
 from dbconnect import client
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
 from datetime import datetime
+import yaml
 
+with open("config.yaml", "r") as ymlfile:
+    cfg = yaml.load(ymlfile)
 
-db = client["package"]
-col = db["packetinfo"]
+db = client[cfg['mongodb']['db']]
+col = db[cfg['mongodb']['collection']]
 
 dFrame = pd.DataFrame()
 
@@ -63,4 +65,4 @@ def web():
     return render_template('dashboard_v3.html', data=dFrame, columns=columns, totalpkt=sumofpackets, totalroute=sumofsignature)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(ssl_context='adhoc')

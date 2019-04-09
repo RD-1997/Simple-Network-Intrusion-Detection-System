@@ -1,3 +1,7 @@
 from pymongo import MongoClient
+import yaml
 
-client = MongoClient('mongodb://localhost:27017/')
+with open("config.yaml", "r") as ymlfile:
+    cfg = yaml.load(ymlfile)
+
+client = MongoClient(cfg['mongodb']['client'])
