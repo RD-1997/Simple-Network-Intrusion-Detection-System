@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 
+
 db = client["package"]
 col = db["packetinfo"]
 
 dFrame = pd.DataFrame()
 
 for obj in col.find():
-
     detector = obj['detector']
     starttime = obj['startTime']
     starttime = datetime.utcfromtimestamp(float(starttime)).strftime('%Y-%m-%d %H:%M:%S')
@@ -24,15 +24,15 @@ for obj in col.find():
     newDf['endTime'] = endtime
     newDf['detector'] = detector
 
-dFrame = dFrame.append(newDf)
+    dFrame = dFrame.append(newDf)
 
 
 dFrame.packets = dFrame.packets.astype(int)
 dFrame = dFrame.sort_values(by=['packets'])
-#print(dFrame.to_string())
+print(dFrame.to_string())
 
-packets = dFrame['packets'][100:130]
-ips = dFrame['signature'][100:130]
+packets = dFrame['packets'][340:370]
+ips = dFrame['signature'][340:370]
 
 plt.barh(ips, packets, .8)
 axes = plt.gca()
@@ -45,8 +45,7 @@ plt.title("bar chart")
 plt.savefig('static/images/ipchart.png', bbox_inches='tight')
 #plt.show()
 
-app = Flask(__name__)
-
+columns = dFrame.columns
 
 sumofpackets = dFrame['packets'].sum()
 print(sumofpackets)
@@ -57,9 +56,11 @@ print(sumofsignature)
 # open connection
 package = client.package
 
+app = Flask(__name__)
+
 @app.route("/")
 def web():
-    return render_template('dashboard_v3.html', tables=[dFrame.to_html(classes='data')], titles=dFrame.columns.values, totalpkt=sumofpackets, totalroute=sumofsignature)
+    return render_template('dashboard_v3.html', data=dFrame, columns=columns, totalpkt=sumofpackets, totalroute=sumofsignature)
 
 if __name__ == '__main__':
     app.run()

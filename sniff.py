@@ -12,7 +12,7 @@ if len(sys.argv) != 3:
 # defining the command line arguments
 interface = str(sys.argv[1])  # user specifies the network interface
 interval = str(sys.argv[2])  # user specifies the interval time
-intervalInt = int(interval) * 60  # converts the minutes given by the user into seconds and creates an integer
+intervalInt = float(interval) * 60  # converts the minutes given by the user into seconds and creates an integer
 # collector = str(sys.argv[3])
 
 packetTime = str(time.time())  # variable to determine packet time in UTC format
@@ -28,14 +28,12 @@ def printinfo(packet):
 
         if TCP in packet:
             proto = "TCP"
-
             key = tuple(sorted([packet[0][1].src, str(packet[0][1].sport), packet[0][1].dst, str(packet[0][1].dport), proto]))
             packet_counts.update([key])
             print(f"Packet #{sum(packet_counts.values())}: {packet[0][1].src}:{packet[0][1].sport} => {packet[0][1].dst}:{packet[0][1].dport} | {proto}")
 
         if UDP in packet:
             proto = "UDP"
-
             key = tuple(sorted([packet[0][1].src, str(packet[0][1].sport), packet[0][1].dst, str(packet[0][1].dport), proto]))
             packet_counts.update([key])
             print(f"Packet #{sum(packet_counts.values())}: {packet[0][1].src}:{packet[0][1].sport} => {packet[0][1].dst}:{packet[0][1].dport} | {proto}")
@@ -56,7 +54,7 @@ def sniffThatSh():
     for key, count in packet_counts.items():
         signature = str(key[0]) + ":" + str(key[2]) + ":" + str(key[1]) + ":" + str(key[3]) + ":" + str(key[4])
         signatureList.append(signature)
-        totalpackets =  str(count)
+        totalpackets = str(count)
         packetList.append(totalpackets)
 
     # parsing the information to the class so it can be stored in the database

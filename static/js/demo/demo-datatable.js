@@ -76,17 +76,13 @@
         },
         // set columns options
         'aoColumns': [
-            {'bVisible':false},
+            {'bVisible':true},
             {'bVisible':true},
             {'bVisible':true},
             {'bVisible':true},
             {'bVisible':true}
         ],
         sDom:      'C<"clear">lfrtip',
-        colVis: {
-            order: 'alfa',
-            'buttonText': 'Show/Hide Columns'
-        }
     });
 
     // 
@@ -97,7 +93,7 @@
         'paging':   true,  // Table pagination
         'ordering': true,  // Column ordering 
         'info':     true,  // Bottom left status text
-        sAjaxSource: '../server/datatable.json',
+        sAjaxSource: '../../server/datatable.json',
         aoColumns: [
           { mData: 'engine' },
           { mData: 'browser' },

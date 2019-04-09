@@ -2308,6 +2308,9 @@ th {
 .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #fafbfc;
 }
+.dataframe > tbody > tr:nth-of-type(odd) {
+  background-color: #fafbfc;
+}
 .table-hover > tbody > tr:hover {
   background-color: #fafbfc;
 }
