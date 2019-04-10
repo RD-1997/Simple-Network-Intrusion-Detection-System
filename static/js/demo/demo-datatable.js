@@ -80,6 +80,10 @@
             {'bVisible':true},
             {'bVisible':true},
             {'bVisible':true},
+            {'bVisible':true},
+            {'bVisible':true},
+            {'bVisible':true},
+            {'bVisible':true},
             {'bVisible':true}
         ],
         sDom:      'C<"clear">lfrtip',

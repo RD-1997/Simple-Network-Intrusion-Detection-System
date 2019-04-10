@@ -10,6 +10,7 @@ with open("config.yaml", "r") as ymlfile:
 
 db = client[cfg['mongodb']['db']]
 col = db[cfg['mongodb']['collection']]
+package = client.package
 
 dFrame = pd.DataFrame()
 
@@ -23,40 +24,85 @@ for obj in col.find():
     newDf['signature'] = obj['signature']
     newDf['packets'] = obj['totalpackets']
     newDf['starttime'] = starttime
-    newDf['endTime'] = endtime
+    newDf['endtime'] = endtime
     newDf['detector'] = detector
 
     dFrame = dFrame.append(newDf)
 
 
-dFrame.packets = dFrame.packets.astype(int)
-dFrame = dFrame.sort_values(by=['packets'])
-print(dFrame.to_string())
+updatedDf = dFrame["signature"].str.split(":", n=4, expand=True)
+dFrame["src_ip"] = updatedDf[0]
+dFrame["src_port"] = updatedDf[1]
+dFrame["dest_ip"] = updatedDf[2]
+dFrame["dest_port"] = updatedDf[3]
+dFrame["protocol"] = updatedDf[4]
 
-packets = dFrame['packets'][340:370]
-ips = dFrame['signature'][340:370]
+dFrame = dFrame[dFrame['src_ip'].map(len) > 5]
+dFrame = dFrame[dFrame['src_port'].map(len) < 6]
+dFrame = dFrame[dFrame['dest_ip'].map(len) > 5]
+dFrame = dFrame[dFrame['dest_port'].map(len) < 6]
 
-plt.barh(ips, packets, .8)
-axes = plt.gca()
-axes.set_xlim([1, 100])
-plt.xticks(rotation='vertical')
-plt.yticks(fontsize='8')
-plt.ylabel("IP Addresses")
-plt.xlabel("Packet count")
-plt.title("bar chart")
-plt.savefig('static/images/ipchart.png', bbox_inches='tight')
-#plt.show()
-
-columns = dFrame.columns
-
-sumofpackets = dFrame['packets'].sum()
-print(sumofpackets)
 
 sumofsignature = dFrame.shape[0]
 print(sumofsignature)
 
-# open connection
-package = client.package
+dFrame = dFrame[['src_ip', 'src_port', 'dest_ip', 'dest_port', 'protocol', 'packets', 'starttime', 'endtime', 'detector']]
+columns = dFrame.columns
+
+#print(dFrame.to_string())
+
+dFrame.packets = dFrame.packets.astype(int)
+dFrame = dFrame.sort_values(by=['packets'])
+
+sumofpackets = dFrame['packets'].sum()
+print(sumofpackets)
+
+packets = dFrame['packets']
+sniffDate = dFrame['starttime']
+
+plt.barh(sniffDate, packets, .8)
+axes = plt.gca()
+plt.xticks(rotation=60)
+plt.yticks(fontsize='8')
+plt.ylabel("Interval")
+plt.xlabel("Total packets")
+plt.title("Total sniffed packets per interval")
+plt.savefig('static/images/ipchart.png', bbox_inches='tight')
+plt.show()
+
+# dataset for the piechart to use
+lolFrame = pd.DataFrame()
+lolFrame = dFrame[['packets', 'protocol']]
+lolFrame = lolFrame.groupby('protocol', as_index=False).agg(sum)
+print(list(lolFrame))
+colors = ["#E13F29", "#D69A80", "#D63B59", "#AE5552", "#CB5C3B", "#EB8076", "#96624E"]
+
+# Create a pie chart
+plt.pie(
+    # using data total)arrests
+    lolFrame['packets'],
+    # with the labels being officer names
+    labels=lolFrame['protocol'],
+    # with no shadows
+    shadow=False,
+    # with colors
+    colors=colors,
+    # with one slide exploded out
+    explode=(0, 0.1),
+    # with the start angle at 90%
+    startangle=90,
+    # with the percent listed as a fraction
+    autopct='%1.1f%%',
+    )
+
+# View the plot drop above
+plt.axis('equal')
+plt.title("Protocol sniffed")
+
+# View the plot
+plt.tight_layout()
+plt.savefig('static/images/piechart.png', bbox_inches='tight')
+plt.show()
 
 app = Flask(__name__)
 

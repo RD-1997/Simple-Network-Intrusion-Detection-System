@@ -35,7 +35,7 @@ class manageTraffic():
         s.send(data_string)
 
         s.close()
-        print('Data Sent to Server')
+        print('Data sent to collector')
 
 
 

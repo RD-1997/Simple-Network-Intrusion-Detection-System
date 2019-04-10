@@ -52,10 +52,17 @@ def sniffThatSh():
     packetList = []
 
     for key, count in packet_counts.items():
-        signature = str(key[0]) + ":" + str(key[2]) + ":" + str(key[1]) + ":" + str(key[3]) + ":" + str(key[4])
-        signatureList.append(signature)
-        totalpackets = str(count)
-        packetList.append(totalpackets)
+        if str(key[4]) == "TCP":
+            signature = str(key[0]) + ":" + str(key[2]) + ":" + str(key[1]) + ":" + str(key[3]) + ":" + str(key[4])
+            signatureList.append(signature)
+            totalpackets = str(count)
+            packetList.append(totalpackets)
+
+        if str(key[4]) == "UDP":
+            signature = str(key[0]) + ":" + str(key[2]) + ":" + str(key[1]) + ":" + str(key[3]) + ":" + str(key[4])
+            signatureList.append(signature)
+            totalpackets = str(count)
+            packetList.append(totalpackets)
 
     # parsing the information to the class so it can be stored in the database
     detector = manageTraffic("detector1")
@@ -63,7 +70,7 @@ def sniffThatSh():
 
     time.sleep(5)  # sleeps for 5 seconds
 
-    # sniffThatSh()       # repeats the code
+    sniffThatSh()       # repeats the code
 
 
 Thread(target=sniffThatSh).start()  # executing the code
