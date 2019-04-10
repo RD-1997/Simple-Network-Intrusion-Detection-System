@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from collections import Counter
 from scapy.all import *
 import time
@@ -44,6 +45,7 @@ def printinfo(packet):
 
 # the actual sniffer
 def sniffThatSh():
+    global packet_counts
     print("[*] Start sniffing...\n")
     sniff(iface=interface, filter="ip and tcp or udp", prn=printinfo, timeout=intervalInt)
     print("[*] Stop sniffing\n")
@@ -65,9 +67,9 @@ def sniffThatSh():
             packetList.append(totalpackets)
 
     # parsing the information to the class so it can be stored in the database
-    detector = manageTraffic("detector1")
+    detector = manageTraffic("detector2")
     detector.structureTraffic(signatureList, packetList, startTime, packetTime)
-
+    packet_counts = Counter()
     time.sleep(5)  # sleeps for 5 seconds
 
     sniffThatSh()       # repeats the code
