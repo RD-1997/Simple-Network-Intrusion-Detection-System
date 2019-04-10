@@ -2259,7 +2259,7 @@ th {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 8px;
+  padding: 0px;
   line-height: 1.52857143;
   vertical-align: top;
   border-top: 1px solid #eeeeee;

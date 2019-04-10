@@ -8,6 +8,10 @@
    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
    <title>Network Intrusion Detection System</title>
    <!-- =============== VENDOR STYLES ===============-->
+   <!-- DATATABLES-->
+   <link rel="stylesheet" href="/static/vendor/datatables-colvis/css/dataTables.colVis.css">
+   <link rel="stylesheet" href="/static/vendor/datatables/media/css/dataTables.bootstrap.css">
+   <link rel="stylesheet" href="/static/vendor/dataTables.fontAwesome/index.css">
    <!-- FONT AWESOME-->
    <link rel="stylesheet" href="/static/vendor/fontawesome/css/font-awesome.min.css">
    <!-- SIMPLE LINE ICONS-->
@@ -116,10 +120,10 @@
                   <div class="panel widget bg-purple-light pt b0 widget">
                      <div class="ph">
                         <em class="icon-globe fa-lg pull-right"></em>
-                        <div class="h2 mt0">700
-                           <span class="text-sm text-white">GB</span>
+                        <div class="h2 mt0">{{ totalsniffs }}
+                           <span class="text-sm text-white">x</span>
                         </div>
-                        <div class="text-uppercase">Quota</div>
+                        <div class="text-uppercase">times sniffed for packets</div>
                      </div>
                      <div data-sparkline="" data-type="line" data-width="100%" data-height="75px" data-line-color="#7266ba" data-chart-range-min="0" data-fill-color="#7266ba" data-spot-color="#7266ba" data-min-spot-color="#7266ba" data-max-spot-color="#7266ba"
                      data-highlight-spot-color="#7266ba" data-highlight-line-color="#7266ba" values="1,4,5,4,8,7,10" style="margin-bottom: -2px" data-resize="true"></div>
@@ -160,7 +164,7 @@
                            <small>Packet Data</small>
                         </div>
                         <div class="panel-body">
-                           <table id="datatable3" class="table table-striped table-hover">
+                           <table id="datatable2" class="table table-striped table-hover">
                               <thead>
                                  <tr>
                                     {% for c in columns %}
@@ -185,6 +189,15 @@
 
                            {% endfor %}
                               </tbody>
+                              <tfoot>
+                                 <tr>
+                                    {% for c in columns %}
+                                    <th>
+                                       <input type="text" name="{{ c }}" placeholder="{{ c }}" class="form-control input-sm datatable_input_col_search">
+                                    </th>
+                                    {% endfor %}
+                                 </tr>
+                              </tfoot>
                            </table>
                         </div>
                      </div>
@@ -248,13 +261,14 @@
    <script src="/static/vendor/ika.jvectormap/jquery-jvectormap-world-mill-en.js"></script>
    <script src="/static/vendor/ika.jvectormap/jquery-jvectormap-us-mill-en.js"></script>
    <script src="/static/js/demo/demo-vector-map.js"></script>
-   <!-- =============== APP SCRIPTS ===============-->
-   <script src="/static/js/app.js"></script>
-   <!-- DATATABLES-->
    <script src="/static/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
    <script src="/static/vendor/datatables-colvis/js/dataTables.colVis.js"></script>
    <script src="/static/vendor/datatables/media/js/dataTables.bootstrap.js"></script>
    <script src="/static/js/demo/demo-datatable.js"></script>
+   <!-- =============== APP SCRIPTS ===============-->
+   <script src="/static/js/app.js"></script>
+   <!-- DATATABLES-->
+
 </body>
 
 </html>

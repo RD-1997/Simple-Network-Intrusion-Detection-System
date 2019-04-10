@@ -69,6 +69,8 @@ dFrame.packets = dFrame.packets.astype(int)
 lawlDf = pd.DataFrame()
 lawlDf = dFrame[['starttime', 'packets']]
 lawlDf = lawlDf.groupby('starttime', as_index=False).agg(sum)
+totalsniffs = lawlDf.shape[0]
+print(totalsniffs)
 
 # total packets
 sumofpackets = dFrame['packets'].sum()
@@ -136,7 +138,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def web():
-    return render_template('dashboard_v3.html', data=dFrame, columns=columns, totalpkt=sumofpackets, totalroute=sumofsignature)
+    return render_template('dashboard_v3.html', data=dFrame, columns=columns, totalpkt=sumofpackets, totalroute=sumofsignature, totalsniffs=totalsniffs)
 
 if __name__ == '__main__':
     app.run(ssl_context='adhoc')
