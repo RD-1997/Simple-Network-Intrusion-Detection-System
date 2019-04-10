@@ -42,7 +42,7 @@ def printinfo(packet):
         print(e)
 
 
-
+# the actual sniffer
 def sniffThatSh():
     print("[*] Start sniffing...\n")
     sniff(iface=interface, filter="ip and tcp or udp", prn=printinfo, timeout=intervalInt)

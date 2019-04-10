@@ -5,21 +5,29 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import yaml
 
+# importing yaml configuration file for that extra security
 with open("config.yaml", "r") as ymlfile:
     cfg = yaml.load(ymlfile)
 
+# defining the mongodb values
 db = client[cfg['mongodb']['db']]
 col = db[cfg['mongodb']['collection']]
 package = client.package
 
+# creating empty dataframe
 dFrame = pd.DataFrame()
 
+# looping over the database and retrieving all values
 for obj in col.find():
+
+    # retrieving the following values and store them in variables
     detector = obj['detector']
     starttime = obj['startTime']
     starttime = datetime.utcfromtimestamp(float(starttime)).strftime('%Y-%m-%d %H:%M:%S')
     endtime = obj['endTime']
     endtime = datetime.utcfromtimestamp(float(endtime)).strftime('%Y-%m-%d %H:%M:%S')
+
+    # put all values in a new dataframe dynamically
     newDf = pd.DataFrame()
     newDf['signature'] = obj['signature']
     newDf['packets'] = obj['totalpackets']
@@ -27,9 +35,10 @@ for obj in col.find():
     newDf['endtime'] = endtime
     newDf['detector'] = detector
 
+    # finally, append the new data frame to the existing one for all results
     dFrame = dFrame.append(newDf)
 
-
+# segregating the signature to individual columns and values
 updatedDf = dFrame["signature"].str.split(":", n=4, expand=True)
 dFrame["src_ip"] = updatedDf[0]
 dFrame["src_port"] = updatedDf[1]
@@ -37,29 +46,39 @@ dFrame["dest_ip"] = updatedDf[2]
 dFrame["dest_port"] = updatedDf[3]
 dFrame["protocol"] = updatedDf[4]
 
+# update the disected signature as new columns to the existing main data frame
 dFrame = dFrame[dFrame['src_ip'].map(len) > 5]
 dFrame = dFrame[dFrame['src_port'].map(len) < 6]
 dFrame = dFrame[dFrame['dest_ip'].map(len) > 5]
 dFrame = dFrame[dFrame['dest_port'].map(len) < 6]
 
-
+# counting the amount of signatures
 sumofsignature = dFrame.shape[0]
 print(sumofsignature)
 
+# re arranging the columns and leaving out the signature column
 dFrame = dFrame[['src_ip', 'src_port', 'dest_ip', 'dest_port', 'protocol', 'packets', 'starttime', 'endtime', 'detector']]
 columns = dFrame.columns
 
-#print(dFrame.to_string())
+############################################## START BAR CHART ########################################################################
 
+# preparing dataset for bar chart
 dFrame.packets = dFrame.packets.astype(int)
-dFrame = dFrame.sort_values(by=['packets'])
 
+# creating new dataframe for the barchart
+lawlDf = pd.DataFrame()
+lawlDf = dFrame[['starttime', 'packets']]
+lawlDf = lawlDf.groupby('starttime', as_index=False).agg(sum)
+
+# total packets
 sumofpackets = dFrame['packets'].sum()
 print(sumofpackets)
 
-packets = dFrame['packets']
-sniffDate = dFrame['starttime']
+# columns to use for bar chart
+packets = lawlDf['packets']
+sniffDate = lawlDf['starttime']
 
+# creating the bar chart
 plt.barh(sniffDate, packets, .8)
 axes = plt.gca()
 plt.xticks(rotation=60)
@@ -67,31 +86,34 @@ plt.yticks(fontsize='8')
 plt.ylabel("Interval")
 plt.xlabel("Total packets")
 plt.title("Total sniffed packets per interval")
+
+# saving the bar chart
 plt.savefig('static/images/ipchart.png', bbox_inches='tight')
 plt.show()
+############################################## END BAR CHART ########################################################################
 
-# dataset for the piechart to use
+############################################## START PIE CHART ########################################################################
+
+# preparing the data set for the piechart to use
 lolFrame = pd.DataFrame()
+
+# using the relevant columns and put them in a new data frame
 lolFrame = dFrame[['packets', 'protocol']]
+
+# Aggregating the total packets per protocol
 lolFrame = lolFrame.groupby('protocol', as_index=False).agg(sum)
-print(list(lolFrame))
+
+#some bs color scheme for the piechart
 colors = ["#E13F29", "#D69A80", "#D63B59", "#AE5552", "#CB5C3B", "#EB8076", "#96624E"]
 
 # Create a pie chart
 plt.pie(
-    # using data total)arrests
     lolFrame['packets'],
-    # with the labels being officer names
     labels=lolFrame['protocol'],
-    # with no shadows
-    shadow=False,
-    # with colors
+    shadow=True,
     colors=colors,
-    # with one slide exploded out
     explode=(0, 0.1),
-    # with the start angle at 90%
     startangle=90,
-    # with the percent listed as a fraction
     autopct='%1.1f%%',
     )
 
@@ -101,9 +123,15 @@ plt.title("Protocol sniffed")
 
 # View the plot
 plt.tight_layout()
+
+# saving the plot as an image
 plt.savefig('static/images/piechart.png', bbox_inches='tight')
 plt.show()
 
+############################################ END PIE CHART ############################################################################
+
+
+# defining the flask app
 app = Flask(__name__)
 
 @app.route("/")

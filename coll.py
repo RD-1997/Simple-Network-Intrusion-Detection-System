@@ -13,7 +13,7 @@ class manageTraffic():
 
     def structureTraffic(self, signature, totalpackets, startTime, packetTime):
 
-        #data will be sent to server over socket
+        # data will be sent to server over socket
         HOST = cfg['socket']['ip']
         PORT = cfg['socket']['port']
 
