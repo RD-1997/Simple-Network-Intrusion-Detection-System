@@ -244,65 +244,7 @@
 
 // CHART BAR
 // ----------------------------------- 
-(function(window, document, $, undefined){
 
-  $(function(){
-
-    var data = [{
-      "label": "Sales",
-      "color": "#9cd159",
-      "data": [
-        ["Jan", 27],
-        ["Feb", 82],
-        ["Mar", 56],
-        ["Apr", 14],
-        ["May", 28],
-        ["Jun", 77],
-        ["Jul", 23],
-        ["Aug", 49],
-        ["Sep", 81],
-        ["Oct", 20]
-      ]
-    }];
-
-    var options = {
-                    series: {
-                        bars: {
-                            align: 'center',
-                            lineWidth: 0,
-                            show: true,
-                            barWidth: 0.6,
-                            fill: 0.9
-                        }
-                    },
-                    grid: {
-                        borderColor: '#eee',
-                        borderWidth: 1,
-                        hoverable: true,
-                        backgroundColor: '#fcfcfc'
-                    },
-                    tooltip: true,
-                    tooltipOpts: {
-                        content: function (label, x, y) { return x + ' : ' + y; }
-                    },
-                    xaxis: {
-                        tickColor: '#fcfcfc',
-                        mode: 'categories'
-                    },
-                    yaxis: {
-                        // position: 'right' or 'left'
-                        tickColor: '#eee'
-                    },
-                    shadowSize: 0
-                };
-
-    var chart = $('.chart-bar');
-    if(chart.length)
-      $.plot(chart, data, options);
-
-  });
-
-})(window, document, window.jQuery);
 
 
 // CHART BAR STACKED

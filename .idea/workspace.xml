@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c8f41d9-0c9d-48d9-9a6b-567a2f1c4f07" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/NetworkEngineering2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NetworkEngineering2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/bootstrap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/images/ipchart.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/ipchart.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/piechart.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/piechart.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/demo/demo-datatable.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/demo/demo-datatable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/demo/demo-flot.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/demo/demo-flot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/dashboard_v3.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard_v3.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,45 +48,69 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="5" />
-          <entry key="html" value="135" />
+          <entry key="html" value="496" />
           <entry key="js" value="23" />
-          <entry key="py" value="86" />
+          <entry key="py" value="370" />
+          <entry key="yaml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="5" />
-          <entry key="HTML" value="135" />
+          <entry key="HTML" value="496" />
           <entry key="JavaScript" value="23" />
-          <entry key="Python" value="86" />
+          <entry key="Python" value="370" />
+          <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="1" />
-          <entry key="html" value="4" />
-          <entry key="js" value="6" />
+          <entry key="html" value="7" />
+          <entry key="js" value="7" />
+          <entry key="py" value="1" />
+          <entry key="yaml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="1" />
-          <entry key="HTML" value="4" />
-          <entry key="JavaScript" value="6" />
+          <entry key="HTML" value="7" />
+          <entry key="JavaScript" value="7" />
+          <entry key="Python" value="1" />
+          <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+            <state relative-caret-position="437">
+              <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Bootstrap-Thema/app/chart-flot.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="507">
+              <caret line="1238" column="41" lean-forward="true" selection-start-line="1238" selection-start-column="41" selection-end-line="1238" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -118,6 +139,7 @@
       <find>&lt;tfoot&gt;</find>
       <find>table</find>
       <find>sdom</find>
+      <find>bar</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -146,12 +168,13 @@
         <option value="$PROJECT_DIR$/bin/startwebapp.sh" />
         <option value="$PROJECT_DIR$/bin/install.sh" />
         <option value="$PROJECT_DIR$/sniff.py" />
-        <option value="$PROJECT_DIR$/config.yaml" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/static/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/../Bootstrap-Thema/app/js/demo/demo-datatable.js" />
-        <option value="$PROJECT_DIR$/templates/dashboard_v3.html" />
         <option value="$PROJECT_DIR$/static/js/demo/demo-datatable.js" />
+        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/static/js/demo/demo-flot.js" />
+        <option value="$PROJECT_DIR$/templates/dashboard_v3.html" />
+        <option value="$PROJECT_DIR$/config.yaml" />
       </list>
     </option>
   </component>
@@ -168,9 +191,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="31" />
-    <option name="y" value="116" />
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="827" />
+    <option name="height" value="825" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -184,56 +207,6 @@
             <path>
               <item name="NetworkEngineering2" type="b2602c69:ProjectViewProjectNode" />
               <item name="NetworkEngineering2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NetworkEngineering2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NetworkEngineering2" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NetworkEngineering2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NetworkEngineering2" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NetworkEngineering2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NetworkEngineering2" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NetworkEngineering2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NetworkEngineering2" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NetworkEngineering2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NetworkEngineering2" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NetworkEngineering2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NetworkEngineering2" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="datatables-colvis" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NetworkEngineering2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NetworkEngineering2" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="datatables-colvis" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NetworkEngineering2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NetworkEngineering2" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -452,10 +425,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="31" y="116" width="1440" height="827" extended-state="0" />
+    <frame x="31" y="23" width="1440" height="825" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4979757" visible="true" weight="0.17167382" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4979757" visible="true" weight="0.17167382" />
       <window_info id="Structure" order="1" sideWeight="0.5020243" side_tool="true" weight="0.20028612" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -469,16 +442,16 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32789117" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.21964529" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49928468" weight="0.13469388" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" sideWeight="0.49928468" visible="true" weight="0.3170068" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49928468" visible="true" weight="0.13369714" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49928468" weight="0.31650752" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.49203187" visible="true" weight="0.061516453" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.4929134" visible="true" weight="0.061516453" />
       <window_info anchor="right" id="Database" order="4" weight="0.32982844" />
       <window_info anchor="right" id="R Graphics" order="5" />
       <window_info anchor="right" id="R Packages" order="6" />
-      <window_info anchor="right" x="0" y="0" width="310" height="625" id="Documentation" order="7" sideWeight="0.5079681" side_tool="true" visible="true" weight="0.061516453" />
+      <window_info anchor="right" x="0" y="0" width="310" height="625" id="Documentation" order="7" sideWeight="0.50708663" side_tool="true" visible="true" weight="0.061516453" />
       <window_info anchor="right" id="Coverage" order="8" side_tool="true" />
     </layout>
   </component>
@@ -567,7 +540,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Bootstrap-Thema/app/dashboard_v3.html" />
     <entry file="file://$PROJECT_DIR$/static/images/ipchart.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -618,24 +590,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/startwebapp.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sniff.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
@@ -669,13 +627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/dashboard_v3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="171" column="48" lean-forward="true" selection-start-line="171" selection-start-column="48" selection-end-line="171" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Bootstrap-Thema/app/js/demo/demo-datatable.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="526">
@@ -693,13 +644,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sniff.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/demo/demo-flot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="246" lean-forward="true" selection-start-line="246" selection-end-line="246" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        <state relative-caret-position="437">
+          <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Bootstrap-Thema/app/dashboard_v3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="85" column="18" selection-start-line="85" selection-start-column="18" selection-end-line="89" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/dashboard_v3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="59" column="25" lean-forward="true" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Bootstrap-Thema/app/chart-flot.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="1238" column="41" lean-forward="true" selection-start-line="1238" selection-start-column="41" selection-end-line="1238" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>

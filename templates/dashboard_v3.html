@@ -37,14 +37,11 @@
          <nav role="navigation" class="navbar topnavbar">
             <!-- START navbar header-->
             <div class="navbar-header">
-               <a href="#/" class="navbar-brand">
+               <a href="#" class="navbar-brand">
                </a>
             </div>
             <!-- END navbar header-->
-         </nav>
-         <!-- END Top Navbar-->
-          <!-- START Nav wrapper-->
-            <div class="nav-wrapper">
+             <div class="nav-wrapper">
                <!-- START Left navbar-->
                <ul class="nav navbar-nav">
                   <li>
@@ -57,8 +54,18 @@
                         <em class="fa fa-navicon"></em>
                      </a>
                   </li>
+                  <li class="visible-lg">
+                     <a href="#" data-toggle-fullscreen="">
+                        <em class="fa fa-expand"></em>
+                     </a>
+                  </li>
                </ul>
+
             </div>
+         </nav>
+         <!-- END Top Navbar-->
+          <!-- START Nav wrapper-->
+
                <!-- END Left navbar-->
       </header>
       <!-- sidebar-->
@@ -108,8 +115,10 @@
                   <div class="panel bg-info-light pt b0 widget">
                      <div class="ph">
                         <em class="icon-cloud-upload fa-lg pull-right"></em>
-                        <div class="h2 mt0">{{ totalpkt }}</div>
-                        <div class="text-uppercase">packets sniffed in total</div>
+                        <div class="h2 mt0">{{ totalsniffs }}
+                        <span class="text-sm text-white">times</span>
+                        </div>
+                        <div class="text-uppercase">sniffed for packets</div>
                      </div>
                      <div data-sparkline="" data-type="line" data-width="100%" data-height="75px" data-line-color="#23b7e5" data-chart-range-min="0" data-fill-color="#23b7e5" data-spot-color="#23b7e5" data-min-spot-color="#23b7e5" data-max-spot-color="#23b7e5"
                      data-highlight-spot-color="#23b7e5" data-highlight-line-color="#23b7e5" values="2,5,3,7,4,5" style="margin-bottom: -2px" data-resize="true"></div>
@@ -120,10 +129,8 @@
                   <div class="panel widget bg-purple-light pt b0 widget">
                      <div class="ph">
                         <em class="icon-globe fa-lg pull-right"></em>
-                        <div class="h2 mt0">{{ totalsniffs }}
-                           <span class="text-sm text-white">x</span>
-                        </div>
-                        <div class="text-uppercase">times sniffed for packets</div>
+                        <div class="h2 mt0">{{ totalpkt }}</div>
+                        <div class="text-uppercase">total packets sniffed</div>
                      </div>
                      <div data-sparkline="" data-type="line" data-width="100%" data-height="75px" data-line-color="#7266ba" data-chart-range-min="0" data-fill-color="#7266ba" data-spot-color="#7266ba" data-min-spot-color="#7266ba" data-max-spot-color="#7266ba"
                      data-highlight-spot-color="#7266ba" data-highlight-line-color="#7266ba" values="1,4,5,4,8,7,10" style="margin-bottom: -2px" data-resize="true"></div>
@@ -205,7 +212,6 @@
                </div>
 
 
-               </div>
             <!-- END Widgets-->
          </div>
       </section>

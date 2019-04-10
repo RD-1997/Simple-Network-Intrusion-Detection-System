@@ -56,6 +56,18 @@ dFrame = dFrame[dFrame['dest_port'].map(len) < 6]
 sumofsignature = dFrame.shape[0]
 print(sumofsignature)
 
+#print(dFrame.to_string())
+lelzDf = pd.DataFrame()
+lelzDf = dFrame[['signature', 'packets']]
+lelzDf.packets = lelzDf.packets.astype(int)
+lelzDf = lelzDf.groupby('signature', as_index=False).agg(sum)
+lelzDf = lelzDf.sort_values(by=['packets'], ascending=False)
+
+toptentraffic = lelzDf[0:10]
+
+print(toptentraffic)
+
+
 # re arranging the columns and leaving out the signature column
 dFrame = dFrame[['src_ip', 'src_port', 'dest_ip', 'dest_port', 'protocol', 'packets', 'starttime', 'endtime', 'detector']]
 columns = dFrame.columns
@@ -86,7 +98,7 @@ axes = plt.gca()
 plt.xticks(rotation=60)
 plt.yticks(fontsize='8')
 plt.ylabel("Interval")
-plt.xlabel("Total packets")
+plt.xlabel("Packets")
 plt.title("Total sniffed packets per interval")
 
 # saving the bar chart
@@ -132,13 +144,12 @@ plt.show()
 
 ############################################ END PIE CHART ############################################################################
 
-
 # defining the flask app
 app = Flask(__name__)
 
 @app.route("/")
 def web():
-    return render_template('dashboard_v3.html', data=dFrame, columns=columns, totalpkt=sumofpackets, totalroute=sumofsignature, totalsniffs=totalsniffs)
+    return render_template('dashboard_v3.html', data=dFrame, columns=columns, totalpkt=sumofpackets, totalroute=sumofsignature, totalsniffs=totalsniffs, topten=toptentraffic)
 
 if __name__ == '__main__':
     app.run(ssl_context='adhoc')
