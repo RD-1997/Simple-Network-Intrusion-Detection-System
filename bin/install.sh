@@ -47,6 +47,8 @@ pip3 install pymongo
 pip3 install pandas
 pip3 install matplotlib
 pip3 install pyyaml
+pip3 install pyOpenSSL
+apt-get install python-tk
 apt install mongodb -y
 service mongodb start
 

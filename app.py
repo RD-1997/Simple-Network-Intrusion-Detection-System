@@ -6,7 +6,6 @@ from datetime import datetime
 import yaml
 
 
-
 # defining the flask app
 app = Flask(__name__)
 
@@ -154,14 +153,11 @@ def web():
         startangle=90,
         autopct='%1.1f%%',
     )
-
     # View the plot drop above
     plt.axis('equal')
     plt.title("Protocol sniffed")
-
     # View the plot
     plt.tight_layout()
-
     # saving the plot as an image
     plt.savefig('static/images/piechart.png', bbox_inches='tight')
     plt.show()

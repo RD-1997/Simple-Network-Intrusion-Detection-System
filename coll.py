@@ -2,9 +2,55 @@
 import socket
 import pickle
 import yaml
+import ssl, traceback, re, sys
 
 with open("config.yaml", "r") as ymlfile:
     cfg = yaml.load(ymlfile)
+
+HOST = cfg['socket']['ip']
+PORT = cfg['socket']['port']
+
+ssl_version = ssl.PROTOCOL_SSLv23
+certfile = "ssl/ca.cert"
+keyfile = "ssl/canew.key"
+ciphers = None
+option_test_switch = 1  # to test, change to 1
+if option_test_switch == 1:
+    print("ver=", ssl_version, "ciphers=", ciphers, "certfile=", certfile, "keyfile=", \
+    keyfile, "HOST=", HOST, "PORT=", PORT)
+
+
+def ssl_wrap_socket(sock, ssl_version=None, keyfile=None, certfile=None, ciphers=None):
+    try:
+        sslContext = ssl.SSLContext(ssl_version)
+        if option_test_switch == 1:
+            print("ssl_version loaded!! =", ssl_version)
+
+        if ciphers is not None:
+            # if specified, set certain ciphersuite
+            sslContext.set_ciphers(ciphers)
+            if option_test_switch == 1:
+                print("ciphers loaded!! =", ciphers)
+
+        # 3. set root certificate path
+        if certfile is not None and keyfile is not None:
+            # if specified, load speficied certificate file and private key file
+            sslContext.verify_mode = ssl.CERT_REQUIRED
+            sslContext.load_verify_locations(certfile, keyfile)
+            if option_test_switch == 1:
+                print("ssl loaded!! certfile=", certfile, "keyfile=", keyfile)
+            return sslContext.wrap_socket(sock)
+        else:
+            # default certs
+            sslContext.verify_mode = ssl.CERT_NONE
+            sslContext.load_default_certs()
+            return sslContext.wrap_socket(sock)
+
+    except ssl.SSLError:
+        print("wrap socket failed!")
+        print(traceback.format_exc())
+        sock.close()
+        sys.exit(-1)
 
 
 class manageTraffic():
@@ -12,10 +58,8 @@ class manageTraffic():
         self.detector = detector
 
     def structureTraffic(self, signature, totalpackets, startTime, packetTime):
-
+        global HOST, PORT
         # data will be sent to server over socket
-        HOST = cfg['socket']['ip']
-        PORT = cfg['socket']['port']
 
         data = {
 
@@ -28,13 +72,14 @@ class manageTraffic():
 
         # Create a socket connection.
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect((HOST, PORT))
+        sslSocket = ssl_wrap_socket(s, ssl_version, keyfile, certfile, ciphers)
+        sslSocket.connect((HOST, PORT))
 
         # Pickle the object and send it to the server
         data_string = pickle.dumps(data)
-        s.send(data_string)
+        sslSocket.send(data_string)
 
-        s.close()
+        sslSocket.close()
         print('Data sent to collector')
 
 
