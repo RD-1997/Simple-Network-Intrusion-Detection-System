@@ -2,19 +2,24 @@ import socket, pickle, json, threading
 from dbconnect import client
 import yaml
 import ssl, traceback
+from Crypto.Cipher import AES
 
 with open("config.yaml", "r") as ymlfile:
     cfg = yaml.load(ymlfile)
 
+# socket variables
 HOST = cfg['socket']['ip']
 PORT = cfg['socket']['port']
 
+# database variables
 db = client[cfg['mongodb']['db']]
 col = db[cfg['mongodb']['collection']]
 
+# secure socket variables
 ssl_version = ssl.PROTOCOL_SSLv23
-certfile = "ssl/ca.cert"
-keyfile = "ssl/canew.key"
+certfile = cfg['ssl']['certificate']
+keyfile = cfg['ssl']['key']
+
 option_test_switch = 1 # to test, change to 1
 
 if option_test_switch == 1:
@@ -67,12 +72,8 @@ while True:
     if not data: break
     data_variable = pickle.loads(data)
     conn.close()
-   # print(data_variable)
 
     newjson = json.dumps(data_variable)
-    # Access the information by doing data_variable.process_id or data_variable.task_id etc..,
-    #print(newjson)
-
     print('Data received from client and inserted in db')
     db = client[cfg['mongodb']['db']]
     col = db[cfg['mongodb']['collection']]

@@ -5,4 +5,9 @@ mongodb:
 
 socket:
   ip: '127.0.0.1'
-  port: 50025
+  port: 50027
+
+ssl:
+  version: ssl.PROTOCOL_SSLv23
+  certificate: "ssl/ca.cert"
+  key: "ssl/canew.key"

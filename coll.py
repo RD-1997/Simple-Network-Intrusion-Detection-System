@@ -2,22 +2,25 @@
 import socket
 import pickle
 import yaml
-import ssl, traceback, re, sys
+import ssl, traceback, sys
 
 with open("config.yaml", "r") as ymlfile:
     cfg = yaml.load(ymlfile)
 
+# socket variables
 HOST = cfg['socket']['ip']
 PORT = cfg['socket']['port']
 
+# secure socket variables
 ssl_version = ssl.PROTOCOL_SSLv23
-certfile = "ssl/ca.cert"
-keyfile = "ssl/canew.key"
+certfile = cfg['ssl']['certificate']
+keyfile = cfg['ssl']['key']
+
 option_test_switch = 1  # to test, change to 1
+
 if option_test_switch == 1:
     print("ver=", ssl_version, "certfile=", certfile, "keyfile=", \
     keyfile, "HOST=", HOST, "PORT=", PORT)
-
 
 def ssl_wrap_socket(sock, ssl_version=None, keyfile=None, certfile=None):
     try:
@@ -70,6 +73,7 @@ class manageTraffic():
 
         # Pickle the object and send it to the server
         data_string = pickle.dumps(data)
+
         sslSocket.send(data_string)
 
         sslSocket.close()
