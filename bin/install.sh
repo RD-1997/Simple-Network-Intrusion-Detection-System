@@ -79,6 +79,7 @@ chmod +x /usr/local/bin/startwebapp
 
 echo -e "${GREEN} Commands succesfully created!"
 
+
 echo ""
 echo ""
 echo -e "${GREEN}The packages have been successfully installed${NC}"

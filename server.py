@@ -15,15 +15,14 @@ col = db[cfg['mongodb']['collection']]
 ssl_version = ssl.PROTOCOL_SSLv23
 certfile = "ssl/ca.cert"
 keyfile = "ssl/canew.key"
-ciphers = None
 option_test_switch = 1 # to test, change to 1
 
 if option_test_switch == 1:
-    print("ver=", ssl_version, "ciphers=",ciphers, "certfile=", certfile, \
+    print("ver=", ssl_version, "certfile=", certfile, \
             "keyfile=", keyfile, "HOST=", HOST, "PORT=", PORT)
 
 
-def ssl_wrap_socket(sock, ssl_version=None, keyfile=None, certfile=None, ciphers=None):
+def ssl_wrap_socket(sock, ssl_version=None, keyfile=None, certfile=None):
 
     # create a new SSL context with specified TLS version
     sslContext = ssl.SSLContext(ssl_version)
@@ -32,12 +31,6 @@ def ssl_wrap_socket(sock, ssl_version=None, keyfile=None, certfile=None, ciphers
     else:
             # if not specified, default
         sslContext = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-
-    if ciphers is not None:
-        # if specified, set certain ciphersuite
-        sslContext.set_ciphers(ciphers)
-        if option_test_switch == 1:
-            print("ciphers loaded!! =", ciphers)
 
     # server-side must load certfile and keyfile, so no if-else
 
@@ -48,10 +41,8 @@ def ssl_wrap_socket(sock, ssl_version=None, keyfile=None, certfile=None, ciphers
         return sslContext.wrap_socket(sock, server_side=True)
 
     except ssl.SSLError as e:
-        print
-        "wrap socket failed!"
-        print
-        traceback.format_exc()
+        print("wrap socket failed!")
+        print(traceback.format_exc())
 
 
 print("Creating socket...")
@@ -67,7 +58,7 @@ print("Listening for connection...")
 while True:
     conn, addr = s.accept()
     print('Connected by', addr)
-    connectionSocket = ssl_wrap_socket(conn, ssl_version, keyfile, certfile, ciphers)
+    connectionSocket = ssl_wrap_socket(conn, ssl_version, keyfile, certfile)
 
     if not connectionSocket:
         continue

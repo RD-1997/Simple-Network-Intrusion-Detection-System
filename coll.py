@@ -13,24 +13,17 @@ PORT = cfg['socket']['port']
 ssl_version = ssl.PROTOCOL_SSLv23
 certfile = "ssl/ca.cert"
 keyfile = "ssl/canew.key"
-ciphers = None
 option_test_switch = 1  # to test, change to 1
 if option_test_switch == 1:
-    print("ver=", ssl_version, "ciphers=", ciphers, "certfile=", certfile, "keyfile=", \
+    print("ver=", ssl_version, "certfile=", certfile, "keyfile=", \
     keyfile, "HOST=", HOST, "PORT=", PORT)
 
 
-def ssl_wrap_socket(sock, ssl_version=None, keyfile=None, certfile=None, ciphers=None):
+def ssl_wrap_socket(sock, ssl_version=None, keyfile=None, certfile=None):
     try:
         sslContext = ssl.SSLContext(ssl_version)
         if option_test_switch == 1:
             print("ssl_version loaded!! =", ssl_version)
-
-        if ciphers is not None:
-            # if specified, set certain ciphersuite
-            sslContext.set_ciphers(ciphers)
-            if option_test_switch == 1:
-                print("ciphers loaded!! =", ciphers)
 
         # 3. set root certificate path
         if certfile is not None and keyfile is not None:
@@ -72,7 +65,7 @@ class manageTraffic():
 
         # Create a socket connection.
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sslSocket = ssl_wrap_socket(s, ssl_version, keyfile, certfile, ciphers)
+        sslSocket = ssl_wrap_socket(s, ssl_version, keyfile, certfile)
         sslSocket.connect((HOST, PORT))
 
         # Pickle the object and send it to the server
