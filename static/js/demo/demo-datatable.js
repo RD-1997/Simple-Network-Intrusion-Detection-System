@@ -53,6 +53,7 @@
             {'bVisible':true},
             {'bVisible':true},
             {'bVisible':true},
+            {'bVisible':false},
             {'bVisible':true},
             {'bVisible':true},
             {'bVisible':true}
@@ -94,6 +95,7 @@
         },
         // set columns options
         'aoColumns': [
+            {'bVisible':true},
             {'bVisible':true},
             {'bVisible':true},
             {'bVisible':true},

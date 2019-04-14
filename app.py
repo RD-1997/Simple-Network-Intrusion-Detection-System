@@ -9,7 +9,7 @@ import yaml
 # defining the flask app
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=['GET'])
 def web():
     # importing yaml configuration file for that extra security
     with open("config.yaml", "r") as ymlfile:
@@ -59,9 +59,12 @@ def web():
     dFrame = dFrame[dFrame['dest_ip'].map(len) > 5]
     dFrame = dFrame[dFrame['dest_port'].map(len) < 6]
 
+    # segregating starttime to date and time
+    updatedDf1 = dFrame["starttime"].str.split(" ", n=1, expand=True)
+    dFrame["date"] = updatedDf1[0]
+    dFrame["time"] = updatedDf1[1]
     # counting the amount of signatures
     sumofsignature = dFrame.shape[0]
-    print(sumofsignature)
 
     ############################################### END DATATABLE ############################################################################
 
@@ -91,8 +94,7 @@ def web():
     ############################################### END TOP TEN TRAFFIC ##################################################################
 
     # re arranging the columns and leaving out the signature column
-    dFrame = dFrame[
-        ['src_ip', 'src_port', 'dest_ip', 'dest_port', 'protocol', 'packets', 'starttime', 'endtime', 'detector']]
+    dFrame = dFrame[['src_ip', 'src_port', 'dest_ip', 'dest_port', 'protocol', 'packets', 'starttime', 'date', 'time', 'detector']]
     columns = dFrame.columns
 
     ############################################## START BAR CHART ########################################################################
