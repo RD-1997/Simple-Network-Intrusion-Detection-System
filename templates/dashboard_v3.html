@@ -146,12 +146,35 @@
                         </div>
                     </div>
                 </div>
+             <div class="row">
+               <div class="col-lg-6 col-md-6 col-sm-12">
+                        <!-- START widget-->
+                        <div class="panel widget bg-info-light pt b0 widget" style="background-color: #DC143C">
+                            <div class="ph">
+                                <em class="icon-bubbles fa-lg pull-right"></em>
+                                <div class="h2 mt0" align="center">{{ crit }}</div>
+                                <div class="text-uppercase" align="center">Criticals</div>
+                            </div>
+                        </div>
+                    </div>
+                 <div class="col-lg-6 col-md-6 col-sm-12">
+                        <!-- START widget-->
+                        <div class="panel widget bg-info-light pt b0 widget" style="background-color: #FF7F50">
+                            <div class="ph">
+                                <em class="icon-bubbles fa-lg pull-right"></em>
+                                <div class="h2 mt0", align="center">{{ warn }}</div>
+                                <div class="text-uppercase", align="center">Warnings</div>
+                            </div>
+                        </div>
+                    </div>
+
+             </div>
                 <!-- END widgets box-->
                 <!-- START chart-->
                 <!-- END chart-->
 
                 <div class="row">
-                   <div class="col-lg-7">
+                   <div class="col-lg-12">
 
                         <div class="panel panel-default">
                             <div class="panel-heading">Alerts</div>
@@ -207,10 +230,13 @@
                         </div>
                         <!-- END panel-->
                     </div>
-                    <div class="col-lg-5">
+                </div>
+
+               <div class="row">
+                    <div class="col-lg-6">
                         <!-- START panel-->
                         <div class="panel panel-default">
-                            <div class="panel-heading">Top ten popular connections</div>
+                            <div class="panel-heading">Top ten most popular connections</div>
                             <div class="panel-body">
                                 <!-- START table-responsive-->
                                 <div class="table-responsive">
@@ -241,8 +267,11 @@
                         </div>
                         <!-- END panel-->
                     </div>
-
-                </div>
+                  <div class="col-lg-6" align="center">
+                        <img src="/static/images/daychart.png" alt="piechart_protocol">
+                    </div>
+               </div>
+               <br><br>
                   <div class="row" align="center">
                     <div class="col-lg-6" align="center">
                         <img src="/static/images/ipchart.png" alt="interval_traffic" align="center">
@@ -252,7 +281,9 @@
                     </div>
                 </div>
             </div>
+            <script>
 
+            </script>
             <!-- START Widgets-->
             <div class="row">
                 <div class="col-lg-12">
@@ -272,6 +303,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                Date from:
+                                <input type="text" id="min" name="min">
+
+                                Date to:
+                                <input type="text" id="max" name="max">
+
+                                <br>
+                                <br>
+
                                     {% for k, v in data.iterrows() %}
                                     {% if v[5] > 300 %}
                                     <tr class="gradeX" bgcolor="#FFA500">

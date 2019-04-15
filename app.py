@@ -63,6 +63,30 @@ def web():
     updatedDf1 = dFrame["starttime"].str.split(" ", n=1, expand=True)
     dFrame["date"] = updatedDf1[0]
     dFrame["time"] = updatedDf1[1]
+
+
+    ############################################### DAY BAR CHART #######################################################################
+    ggFrame = pd.DataFrame()
+    ggFrame = dFrame[['date', 'packets']]
+    ggFrame.packets = ggFrame.packets.astype(int)
+    ggFrame = ggFrame.groupby('date', as_index=False).agg(sum)
+
+    day = ggFrame['date']
+    pkts = ggFrame['packets']
+
+    plt.bar(day, pkts, .8)
+    axes = plt.gca()
+    #plt.xticks(rotation=60)
+
+    plt.title("Total sniffed packets per day")
+
+    # saving the bar chart
+    plt.savefig('static/images/daychart.png', bbox_inches='tight')
+    plt.show()
+    ################################################ END BAR CHART ######################################################################
+
+    dFrame["date"].replace(regex=True, inplace=True, to_replace=r'\D', value=r'')
+
     # counting the amount of signatures
     sumofsignature = dFrame.shape[0]
 
@@ -88,7 +112,6 @@ def web():
 
     toptentraffic = toptentraffic[['src_ip', 'src_port', 'dest_ip', 'dest_port', 'protocol', 'packets']]
 
-    print(toptentraffic.to_string())
     cols = toptentraffic.columns
 
     ############################################### END TOP TEN TRAFFIC ##################################################################
@@ -96,11 +119,21 @@ def web():
     # re arranging the columns and leaving out the signature column
     dFrame = dFrame[['src_ip', 'src_port', 'dest_ip', 'dest_port', 'protocol', 'packets', 'starttime', 'date', 'time', 'detector']]
     columns = dFrame.columns
+    dFrame.packets = dFrame.packets.astype(int)
+
+    # counting crits for the tiles
+    countcritical = 0
+    for k, v in dFrame.iterrows():
+        if v[5] > 300:
+            countcritical += 1
+
+    # counting warnings for the tiles
+    countwarning = 0
+    for k, v in dFrame.iterrows():
+        if (v[5] > 150) and (v[5] < 200):
+            countwarning += 1
 
     ############################################## START BAR CHART ########################################################################
-
-    # preparing dataset for bar chart
-    dFrame.packets = dFrame.packets.astype(int)
 
     # creating new dataframe for the barchart
     lawlDf = pd.DataFrame()
@@ -166,7 +199,7 @@ def web():
 
     ############################################ END PIE CHART ############################################################################
 
-    return render_template('dashboard_v3.html', data=dFrame, columns=columns, totalpkt=sumofpackets, totalroute=sumofsignature, totalsniffs=totalsniffs, topten=toptentraffic, cols=cols)
+    return render_template('dashboard_v3.html', data=dFrame, columns=columns, totalpkt=sumofpackets, totalroute=sumofsignature, totalsniffs=totalsniffs, topten=toptentraffic, cols=cols, lol=ggFrame, crit=countcritical, warn=countwarning)
 
 if __name__ == '__main__':
     app.run(ssl_context='adhoc')

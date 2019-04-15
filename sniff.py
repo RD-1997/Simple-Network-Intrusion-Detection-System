@@ -67,7 +67,7 @@ def sniffThatSh():
             packetList.append(totalpackets)
 
     # parsing the information to the class so it can be stored in the database
-    detector = manageTraffic("detector2")
+    detector = manageTraffic("detector1")
     detector.structureTraffic(signatureList, packetList, startTime, packetTime)
     packet_counts = Counter()
     time.sleep(5)  # sleeps for 5 seconds
